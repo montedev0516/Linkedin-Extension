@@ -5,10 +5,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     clickButton.addEventListener('click', async () => {
         try {
-            if (!buttonId) {
-                throw new Error('Please enter a valid button ID');
-            }
-
             chrome.runtime.sendMessage({ action: 'startScraping' });
         } catch (error) {
             console.error('Error:', error);
