@@ -13,7 +13,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
                     if (mainBox) {
                         const spans = mainBox.querySelectorAll('span[aria-hidden="true"]');
-                        for (const span in spans) {
+                        for (const span of spans) {
                             res.push(span.textContent);
                         }
                     }
