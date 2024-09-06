@@ -19,9 +19,12 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
                         if (spans.length < 3) {
                             const furtherspans = mainBox.querySelector("div.pvs-entity__sub-components").querySelectorAll('span[aria-hidden="true"]');
-                            for (const furtherspan of furtherspans) {
-                                res.push(furtherspan.textContent);
+                            if (furtherspans) {
+                                for (const furtherspan of furtherspans) {
+                                    res.push(furtherspan.textContent);
+                                }
                             }
+
                         }
                     }
                 }
