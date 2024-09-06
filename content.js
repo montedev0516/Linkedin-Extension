@@ -17,15 +17,15 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
                             res.push(span.textContent);
                         }
 
-                        if (spans.length < 3) {
-                            const furtherspans = mainBox.querySelector("div.pvs-entity__sub-components").querySelectorAll('span[aria-hidden="true"]');
-                            if (furtherspans) {
-                                for (const furtherspan of furtherspans) {
-                                    res.push(furtherspan.textContent);
-                                }
-                            }
+                        // if (spans.length < 3) {
+                        //     const furtherspans = mainBox.querySelector("div.pvs-entity__sub-components").querySelectorAll('span[aria-hidden="true"]');
+                        //     if (furtherspans) {
+                        //         for (const furtherspan of furtherspans) {
+                        //             res.push(furtherspan.textContent);
+                        //         }
+                        //     }
 
-                        }
+                        // }
                     }
                 }
             }
