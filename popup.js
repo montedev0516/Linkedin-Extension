@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     clickButton.addEventListener('click', async () => {
         try {
-            chrome.runtime.sendMessage({ action: 'startScraping' });
+            chrome.runtime.sendMessage({ action: 'start' });
         } catch (error) {
             console.error('Error:', error);
             outputDiv.textContent = 'An error occurred: ' + error.message;
