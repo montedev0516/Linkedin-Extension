@@ -4,27 +4,29 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             const page_url = tabs[0].url;
-            let profile_num = 0;
+            console.log(page_url);
             chrome.tabs.sendMessage(tabs[0].id, { action: "getNum" }, function (response) {
-                profile_num += response.num;
+                const profile_num = response.num;
+                console.log(profile_num);
+
+                for (let i = 0; i < profile_num; i++) {
+                    setTimeout(() => {
+                        chrome.tabs.sendMessage(tabs[0].id, { action: 'click', id: i }, function (response) {
+                            console.log(response.status);
+
+                            setTimeout(() => {
+                                chrome.tabs.sendMessage(tabs[0].id, { action: 'scrape', id: 0 }, function (response) {
+                                    console.log(response.data);
+
+                                    chrome.tabs.update(tabs[0].id, { url: page_url });
+                                });
+                            }, 10000);
+                        });
+                    }, 10000);
+                }
             });
 
-            // console.log(profile_num);
-            for (let i = 0; i < profile_num; i++) {
-                setTimeout(() => {
-                    chrome.tabs.sendMessage(tabs[0].id, { action: 'click', id: i }, function (response) {
-                        console.log(response.status);
-                    });
-                }, 3000);
 
-                setTimeout(() => {
-                    chrome.tabs.sendMessage(tabs[0].id, { action: 'scrape', id: 0 }, function (response) {
-                        console.log(response.data);
-                    });
-                }, 3000);
-
-                chrome.tabs.update(tabs[0].id, { url: page_url });
-            }
         });
     }
 });
